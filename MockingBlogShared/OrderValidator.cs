@@ -10,7 +10,8 @@ namespace MockingBlog
         public bool IsValid => _validationErrors.Count() == 0;
         private ICollection<IValidationError> _validationErrors { get; } = new List<IValidationError>();
 
-        IReadOnlyCollection<IValidationError> IValidationResults.ValidationErrors {
+        IReadOnlyCollection<IValidationError> IValidationResults.ValidationErrors
+        {
             get {
                 return (IReadOnlyCollection<IValidationError>)_validationErrors;
             }

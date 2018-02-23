@@ -79,6 +79,22 @@ namespace MockingBlog.Tests
             return this;
         }
     }
+    public class OrderBuilderBasic
+    {
+        Mock<IOrder> _mock = new Mock<IOrder>();
+        IList<IOrderLine> _orderlines = new List<IOrderLine>();
+
+        public IOrder Build()
+        {
+            _mock.Setup(s => s.OrderLines).Returns((IReadOnlyCollection<IOrderLine>)_orderlines);
+            return _mock.Object;
+        }
+        public OrderBuilderBasic WithOrderLine()
+        {
+            _orderlines.Add(new Mock<IOrderLine>().Object);
+            return this;
+        }
+    }
     public class OrderBuilder
     {
         Mock<IOrder> _mock = new Mock<IOrder>();
@@ -87,7 +103,7 @@ namespace MockingBlog.Tests
 
         public IOrder Build()
         {
-            _mock.Setup(s => s.OrderLines).Returns(_orderlines);
+            _mock.Setup(s => s.OrderLines).Returns((IReadOnlyCollection<IOrderLine>)_orderlines);
             return _mock.Object;
         }
         public OrderBuilder WithOrderLine()
@@ -106,7 +122,7 @@ namespace MockingBlog.Tests
     public class ValidOrderBuilder
     {
         Mock<IOrder> _mock = new Mock<IOrder>();
-        IList<IOrderLine> _orderlines = new List<IOrderLine>();
+        private ICollection<IOrderLine> _orderlines = new List<IOrderLine>();
         Mock<IShippingAddress> _shippingAddressMock = null;
         public ValidOrderBuilder()
         {
@@ -115,7 +131,7 @@ namespace MockingBlog.Tests
         }
         public IOrder Build()
         {
-            _mock.Setup(s => s.OrderLines).Returns(_orderlines);
+            _mock.Setup(s => s.OrderLines).Returns((IReadOnlyCollection<IOrderLine>)_orderlines);
             if (_shippingAddressMock != null)
             {
                 _mock.Setup(s => s.ShippingAddress).Returns(_shippingAddressMock.Object);

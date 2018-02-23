@@ -5,7 +5,7 @@ namespace MockingBlog
 {
   public interface IOrder
   {
-    IEnumerable<IOrderLine> OrderLines { get; }
+    IReadOnlyCollection<IOrderLine> OrderLines { get; }
     IEnumerable<ICoupon> Coupons { get; }
     IShippingAddress ShippingAddress { get; }
   }

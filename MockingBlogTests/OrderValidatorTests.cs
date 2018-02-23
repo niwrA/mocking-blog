@@ -1,5 +1,6 @@
 ﻿using MockingBlog;
 using Moq;
+using System.Linq;
 using Xunit;
 
 namespace MockingBlog.Tests
@@ -12,15 +13,15 @@ namespace MockingBlog.Tests
         // included for the order validation to succeed.
 
         [Fact]
-        public void OrderMustHaveOneOrderLine()
+        public void ValidOrder_IsValid()
         {
-            var emptyOrder = new Tests.OrderBuilder().Build();
+            var emptyOrder = new OrderBuilder().Build();
             var sut = new OrderValidator();
             var sutInvalidResult = sut.Validate(emptyOrder);
 
             Assert.False(sutInvalidResult.IsValid);
 
-            var validOrder = new Tests.OrderBuilder()
+            var validOrder = new OrderBuilder()
               .WithOrderLine()
               .WithShippingAddress()
               .Build();
@@ -30,6 +31,47 @@ namespace MockingBlog.Tests
             Assert.True(sutValidResult.IsValid);
         }
 
+        [Fact]
+        public void OrderWithOutOrderLine_IsNotValid()
+        {
+            var emptyOrder = new OrderBuilder()
+                .Build();
+            var sut = new OrderValidator();
 
-  }
+            var sutInvalidResult = sut.Validate(emptyOrder);
+
+            Assert.False(sutInvalidResult.IsValid);
+            Assert.Single(sutInvalidResult.ValidationErrors);
+            Assert.Equal(ValidationErrorTypes.OrderlinesRequired, sutInvalidResult.ValidationErrors.First().Type);
+        }
+
+        [Fact]
+        public void OrderWithOutShippingAddress_IsNotValid()
+        {
+            var emptyOrder = new OrderBuilder()
+                .WithOrderLine()
+                .Build();
+            var sut = new OrderValidator();
+
+            var sutInvalidResult = sut.Validate(emptyOrder);
+
+            Assert.False(sutInvalidResult.IsValid);
+            Assert.Single(sutInvalidResult.ValidationErrors);
+            Assert.Equal(ValidationErrorTypes.ShippingAddressRequired, sutInvalidResult.ValidationErrors.First().Type);
+        }
+
+        [Fact]
+        public void OrderMustHaveOneOrderLine()
+        {
+            var validOrder = new OrderBuilder()
+                .WithOrderLine()
+                .Build();
+            var sut = new OrderValidator();
+
+            var sutValidResult = sut.Validate(validOrder);
+
+            Assert.True(sutValidResult.IsValid);
+        }
+
+    }
 }
