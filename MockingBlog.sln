@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MockingBlogShared", "MockingBlogShared\MockingBlogShared.shproj", "{0C69DF24-CCE8-493A-8DE9-C810BA002C1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockingBlogTests", "MockingBlogTests\MockingBlogTests.csproj", "{9F1A7061-C9D7-4EC6-92AC-B854886836B1}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MockingBlogShared\MockingBlogShared.projitems*{0c69df24-cce8-493a-8de9-c810ba002c1b}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F1A7061-C9D7-4EC6-92AC-B854886836B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F1A7061-C9D7-4EC6-92AC-B854886836B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F1A7061-C9D7-4EC6-92AC-B854886836B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F1A7061-C9D7-4EC6-92AC-B854886836B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8301D0F-5FE0-4D61-B636-4D7D3E3D8168}
+	EndGlobalSection
+EndGlobal
