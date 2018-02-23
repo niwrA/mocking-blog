@@ -36,7 +36,7 @@ namespace MockingBlog.Tests
     public class ValidationResultsBuilder
     {
         Mock<IValidationResults> ValidationResultsMock = new Mock<IValidationResults>();
-        ICollection<IValidationError> _validationErrors = new List<IValidationError>();
+        IReadOnlyCollection<IValidationError> _validationErrors = new List<IValidationError>();
         public IValidationResults Build()
         {
             if (_validationErrors.Any())

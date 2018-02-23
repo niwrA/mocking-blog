@@ -12,7 +12,7 @@ namespace MockingBlog
   public interface IValidationResults
   {
     bool IsValid { get; }
-    ICollection<IValidationError> ValidationErrors { get; }
+    IReadOnlyCollection<IValidationError> ValidationErrors { get; }
     void AddError(ValidationErrorTypes type, string message);
   }
   public enum ValidationErrorTypes
