@@ -31,6 +31,7 @@ namespace MockingBlog.Tests
             Assert.True(sutValidResult.IsValid);
         }
 
+        // fails on purpose, for blog example
         [Fact]
         public void OrderWithOutOrderLine_IsNotValid()
         {
@@ -60,6 +61,7 @@ namespace MockingBlog.Tests
             Assert.Equal(ValidationErrorTypes.ShippingAddressRequired, sutInvalidResult.ValidationErrors.First().Type);
         }
 
+        // fails on purpose, for blog example
         [Fact]
         public void OrderMustHaveOneOrderLine()
         {
